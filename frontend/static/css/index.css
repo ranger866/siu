@@ -1,0 +1,313 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    background-color: #FFFFFF;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2em;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+nav {
+    margin-right: 10px;
+}
+
+nav a {
+    color: #FFFFFF;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #FFFFFF;
+    color: #000000;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #FFFFFF;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+.sidebar {
+    display: none;
+    /* Sembunyikan sidebar pada desktop */
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100%;
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 20px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar a {
+    display: block;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.sidebar a:hover {
+    background-color: #FFFFFF;
+    color: #000000;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+
+/* Modal Login - Improved Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Lebih gelap untuk kontras */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+    /* Animasi fade in */
+}
+
+.modal-content {
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 10px;
+    /* Border radius lebih besar */
+    width: 90%;
+    max-width: 400px;
+    /* Max width untuk responsivitas */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* Shadow untuk depth */
+    position: relative;
+    animation: slideIn 0.3s ease-in-out;
+    /* Animasi slide in */
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #000000;
+    font-size: 1.5em;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+    /* Pastikan padding tidak menambah lebar */
+}
+
+.modal-content input:focus {
+    outline: none;
+    border-color: #000000;
+    /* Highlight border saat focus */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content button {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #333333;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #000;
+}
+
+#errorMessage {
+    color: #ff0000;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Animasi */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.hero {
+    padding: 100px 20px;
+    text-align: center;
+    background-color: #F5F5F5;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.btn {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #333333;
+}
+
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.feature {
+    width: 30%;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #000000;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+        align-items: center;
+        /* Center features pada mobile */
+    }
+
+    .feature {
+        width: 100%;
+        max-width: 400px;
+        /* Batasi lebar untuk center */
+    }
+
+    header {
+        flex-direction: row;
+        /* Pastikan logo dan hamburger sejajar */
+        justify-content: space-between;
+    }
+
+    .logo {
+        margin-left: 0;
+        margin-bottom: 0;
+    }
+
+    nav {
+        display: none;
+        /* Sembunyikan nav desktop pada mobile */
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .sidebar {
+        display: block;
+        /* Tampilkan sidebar pada mobile */
+    }
+}
