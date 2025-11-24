@@ -2,6 +2,7 @@
 
 let currentSection = 'statistics';
 let currentAction = 'add';
+const userRole = document.querySelector('meta[name="role"]').getAttribute('content')
 
 // Load data on page load
 document.addEventListener('DOMContentLoaded', function () {
@@ -12,26 +13,24 @@ document.addEventListener('DOMContentLoaded', function () {
     showSection('statistics');
 });
 
-// Load Statistics
-function loadStatistics() {
-    fetch('/db/api.php/students')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('studentsCount').textContent = data.length;
-        });
+async function loadStatistics() {
+    const endpoints = [
+        { url: '/db/api.php/students', element: 'studentsCount' },
+        { url: '/db/api.php/teachers', element: 'teachersCount' },
+    ];
 
-    fetch('/db/api.php/teachers')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('teachersCount').textContent = data.length;
-        });
+    if (userRole === 'admin') {
+        endpoints.push({ url: '/db/api.php/users', element: 'usersCount' });
+    }
 
-    if (document.getElementById('userCount')) {
-        fetch('/db/api.php/users')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('usersCount').textContent = data.length;
-            });
+    try {
+        for (const { url, element } of endpoints) {
+            const response = await fetch(url);
+            const data = await response.json();
+            document.getElementById(element).textContent = data.length;
+        }
+    } catch (error) {
+        console.error("Error loading statistics:", error);
     }
 }
 
@@ -53,9 +52,6 @@ function logout() {
             }
         });
 }
-
-
-const userRole = document.querySelector('meta[name="role"]').getAttribute('content')
 
 // Load students with card
 function loadStudents() {
@@ -100,10 +96,10 @@ function loadTeachers() {
                     <p><strong>Email:</strong> ${teacher.email}</p>
                     <p><strong>Status:</strong> ${teacher.status}</p>
                     <div class="actions">
-                        ${userRole === 'admin' ? 
-                            `<button onclick="editTeacher(${teacher.id})">Edit</button>
+                        ${userRole === 'admin' ?
+                        `<button onclick="editTeacher(${teacher.id})">Edit</button>
                             <button onclick="deleteTeacher(${teacher.id})">Hapus</button>` : ''
-                        }
+                    }
                     </div>
                 </div>
             `;
@@ -128,7 +124,7 @@ function loadUsers() {
                         ${userRole === 'admin' ?
                         `<button onclick="editUser(${user.id})">Edit</button>
                         <button onclick="deleteUser(${user.id})">Hapus</button>` : ''
-                        }
+                    }
                     </div>
                 </div>
             `;
